@@ -7,13 +7,25 @@ export const createUser = async (req, res) => {
     const { email, name, password, phoneNumber, role } = req.body;
 
     try {
-            bcrypt.genSalt(saltRounds,(err, salt) => {
+        bcrypt.genSalt(saltRounds, (err, salt) => {
             bcrypt.hash(password, salt, async (err, hash) => {
-                const response = await userModel.create({ email, name, password:hash, phoneNumber, role })
+                const response = await userModel.create({ email, name, password: hash, phoneNumber, role })
                 res.status(200).json(response)
             });
         });
 
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
+
+export const getUser = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const response = await userModel.findById(id)
+        res.send(response)
     } catch (error) {
         console.error(error)
         res.status(500).send(error.message);
