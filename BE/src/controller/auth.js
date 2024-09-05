@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { userModel } from "../schema/user.js"
-
+import jwt from "jsonwebtoken"
 
 export const Login = async (req, res) => {
     try {
@@ -13,7 +13,11 @@ export const Login = async (req, res) => {
 
         bcrypt.compare(password, response.password, (err, result) => {
             if (result) {
-                res.send(response)
+                const privateKey = "12345"
+                const token = jwt.sign({ ...response }, privateKey, {
+                    expiresIn: "1h"
+                });
+                res.send({ token })
             } else {
                 res.status(401).send("Username or password incorrect")
             }
