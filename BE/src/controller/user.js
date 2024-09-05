@@ -42,3 +42,16 @@ export const getUsers = async (req, res) => {
         res.status(500).send(error.message);
     }
 }
+
+export const updateUser = async (req, res) => {
+    const { id } = req.params;
+    const updatedValues = req.body
+
+    try {
+        const response = await userModel.findByIdAndUpdate(id, updatedValues)
+        res.send(response)
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
