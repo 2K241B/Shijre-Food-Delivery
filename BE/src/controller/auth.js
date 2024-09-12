@@ -29,3 +29,21 @@ export const Login = async (req, res) => {
         res.status(500).send(error.message);
     }
 }
+
+const saltRounds = 10;
+
+export const SignUp = async (req, res) => {
+    const { email, name, password, phoneNumber, role } = req.body;
+    
+    try {
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hash = await bcrypt.hash(password, salt);
+        const user = await userModel.create({ email, name, password: hash, phoneNumber, role });
+
+        res.status(200).json(user);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+}
