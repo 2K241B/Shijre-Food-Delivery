@@ -36,3 +36,16 @@ export const getCategoryByID = async (req, res) => {
         res.status(500).send(error.message);
     }
 }
+
+export const updateCategory = async (req, res) => {
+    const { id } = req.params;
+    const updatedValues = req.body
+
+    try {
+        const response = await categoryModel.findByIdAndUpdate(id, updatedValues, { new: true })
+        res.send(response)
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
