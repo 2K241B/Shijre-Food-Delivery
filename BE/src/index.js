@@ -6,6 +6,7 @@ import { Connect } from "./utils/db.js";
 import { userRouter } from "./routes/user.js";
 import { authRouter } from "./routes/auth.js";
 import { sendMail } from "./controller/mail.js";
+import { categoryRouter } from "./routes/category.js";
 
 const app = express();
 dotenv.config()
@@ -17,6 +18,8 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 app.use("/user", userRouter);
 app.use("/auth", authRouter);
+app.use("/category", categoryRouter);
+
 app.get("/mail", sendMail)
 
 app.listen(PORT, () => {

@@ -7,4 +7,4 @@ const CategorySchema = new Schema({
     }
 })
 
-export const userModel = model("user", CategorySchema);
+export const categoryModel = model("category", CategorySchema);
