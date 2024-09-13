@@ -18,7 +18,19 @@ export const getCategories = async (req, res) => {
     try {
         const response = await categoryModel.find()
         res.send(response)
-        
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
+
+export const getCategoryByID = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const response = await categoryModel.findById(id)
+        res.send(response)
     } catch (error) {
         console.error(error)
         res.status(500).send(error.message);
