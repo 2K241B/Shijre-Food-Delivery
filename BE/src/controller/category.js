@@ -12,3 +12,15 @@ export const createCategory = async (req, res) => {
         res.status(500).send(error.message);
     }
 }
+
+export const getCategories = async (req, res) => {
+
+    try {
+        const response = await categoryModel.find()
+        res.send(response)
+        
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
