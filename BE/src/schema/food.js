@@ -9,7 +9,7 @@ const FoodSchema = new Schema({
         type: String,
         required: [true, "Image is required"]
     },
-    ingredient: {
+    ingredients: {
         type: String,
         required: [true, "Ingredient is required"]
     },
@@ -23,4 +23,4 @@ const FoodSchema = new Schema({
     },
 })
 
-export const userModel = model("user", FoodSchema);
+export const foodModel = model("food", FoodSchema);
