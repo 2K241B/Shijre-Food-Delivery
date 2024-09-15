@@ -1,10 +1,10 @@
 import { foodModel } from "../schema/food.js"
 
 export const createFood = async (req, res) => {
-    const { name, image, ingredients, price, discount } = req.body;
+    const { name, image, ingredients, price, discount, categoryId } = req.body;
 
     try {
-        const response = await foodModel.create({ name, image, ingredients, price, discount })
+        const response = await (await foodModel.create({ name, image, ingredients, price, discount, categoryId }))
         res.status(200).json(response)
 
     } catch (error) {
@@ -16,7 +16,7 @@ export const createFood = async (req, res) => {
 export const getFoods = async (req, res) => {
 
     try {
-        const response = await foodModel.find()
+        const response = await foodModel.find().populate("categoryId")
         res.send(response);
 
     } catch (error) {
@@ -29,7 +29,7 @@ export const getFoodByID = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const response = await foodModel.findById(id)
+        const response = await foodModel.findById(id).populate("categoryId")
         res.send(response);
 
     } catch (error) {
