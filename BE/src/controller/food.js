@@ -24,3 +24,16 @@ export const getFoods = async (req, res) => {
         res.status(500).send(error.message);
     }
 }
+
+export const getFoodByID = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const response = await foodModel.findById(id)
+        res.send(response);
+        
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
