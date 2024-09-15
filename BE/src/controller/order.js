@@ -32,6 +32,7 @@ export const updateOrder = async (req, res) => {
     try {
         const response = await orderModel.findByIdAndUpdate(id, updatedValues, { new: true })
         res.send(response)
+      
     } catch (error) {
         console.error(error)
         res.status(500).send(error.message);
