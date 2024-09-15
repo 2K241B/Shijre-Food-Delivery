@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { createFood } from "../controller/food.js";
+import { createFood, getFoods } from "../controller/food.js";
 
 
 const foodRouter = Router();
 
 foodRouter.post("/create", createFood)
-// .get("/", getFoods)
+.get("/", getFoods)
 // .get("/:id", getFoodByID)
 // .put("/:id", updateFood)
 // .delete("/:id", deleteFood);
