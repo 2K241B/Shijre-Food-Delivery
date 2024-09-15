@@ -31,7 +31,7 @@ export const getFoodByID = async (req, res) => {
     try {
         const response = await foodModel.findById(id)
         res.send(response);
-        
+
     } catch (error) {
         console.error(error)
         res.status(500).send(error.message);
@@ -44,7 +44,21 @@ export const updateFood = async (req, res) => {
 
     try {
         const response = await foodModel.findByIdAndUpdate(id, updatedValues, { new: true })
-        res.send(response)
+        res.send(response);
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
+
+export const deleteFood = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const response = await foodModel.findByIdAndDelete(id)
+        res.send(response);
+
     } catch (error) {
         console.error(error)
         res.status(500).send(error.message);
