@@ -10,14 +10,14 @@ const OrderSchema = new Schema({
         type: Number,
         required: [true, "Total Price is required"]
     },
-    processs: {
+    process: {
         type: String,
         enum: ["Order confirmed", "Delivery started"],
         required: [true, "Process is required"]
     },
     createdDate: {
         type: Date,
-        required: [true, "Created Date is required"]
+        default: Date.now,
     },
     district: {
         type: String,
@@ -41,7 +41,9 @@ const OrderSchema = new Schema({
     },
     paymentMethod: {
         type: String,
-        required: [true, "Payment Method is required"]
+        required: [true, "Payment Method is required"],
+        enum: [" By Cash", "By Online"],
+        default: "By Online"
     },
 })
 
