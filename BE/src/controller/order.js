@@ -12,3 +12,15 @@ export const createOrder = async (req, res) => {
         res.status(500).send(error.message);
     }
 }
+
+export const getOrders = async (req, res) => {
+
+    try {
+        const response = await orderModel.find();
+        res.send(response);
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
