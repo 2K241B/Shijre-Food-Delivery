@@ -8,6 +8,7 @@ import { authRouter } from "./routes/auth.js";
 import { sendMail } from "./controller/mail.js";
 import { categoryRouter } from "./routes/category.js";
 import { foodRouter } from "./routes/food.js";
+import { orderRouter } from "./routes/order.js";
 
 const app = express();
 dotenv.config()
@@ -21,6 +22,7 @@ app.use("/user", userRouter);
 app.use("/auth", authRouter);
 app.use("/category", categoryRouter);
 app.use("/food", foodRouter);
+app.use("/order", orderRouter);
 
 app.get("/mail", sendMail)
 
