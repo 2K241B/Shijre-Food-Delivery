@@ -21,6 +21,11 @@ const FoodSchema = new Schema({
         type: Number,
         required: false,
     },
+    categoryId: {
+        type: Schema.ObjectId,
+        ref: "category",
+        required: [true, "Category id required"]
+    }
 })
 
 export const foodModel = model("food", FoodSchema);
