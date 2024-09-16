@@ -8,12 +8,12 @@ const OTPSchema = new Schema({
     oneTimePass: {
         type: Number,
         required: [true, "One Time Password is required"],
-        expires: 3600
     },
     createdAt: {
         type: Date,
         default: Date.now,
+        expires: "5m"
     }
 })
 
-export const otpModel = model("otp", OTPSchema);
+export const otpModel = model("otps", OTPSchema);
