@@ -1,6 +1,8 @@
 import nodemailer from "nodemailer";
 import { userModel } from "../schema/user.js"
 import { otpModel } from "../schema/otp.js"
+import { accessTokenModel } from "../schema/accessToken.js"
+import { nanoid } from "nanoid";
 
 const transporter = nodemailer.createTransport({
     service: "Gmail",
@@ -34,12 +36,31 @@ export const sendMail = async (req, res) => {
         const Info = await transporter.sendMail(mailOptions);
 
         if (Info.messageId) {
-            res.status(200).send({ success: true })
+            res.status(200).send({ success: true, message: Info})
         } else {
             res.status(404).send({ error: "Message didn't send" })
         }
     } catch (error) {
         res.status(404).send({ error: error })
         console.error(error);
+    }
+}
+
+export const verifyOTP = async (req, res) => {
+    const { email, otp } = req.body;
+
+    try {
+        const response = await otpModel.findOne({ email });
+
+        if (!response) return res.status(410).json("OTP expired or not found");
+
+        if (response.oneTimePass == otp) { 
+            const token = await accessTokenModel.create({email, accessToken: nanoid()});
+            
+            res.status(200).send({success: true, accessToken: token.accessToken});
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
     }
 }
