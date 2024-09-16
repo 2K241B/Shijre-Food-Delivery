@@ -9,6 +9,7 @@ import { categoryRouter } from "./routes/category.js";
 import { foodRouter } from "./routes/food.js";
 import { orderRouter } from "./routes/order.js";
 import { mailRouter } from "./routes/mail.js";
+import { passwordRouter } from "./routes/password.js";
 
 const app = express();
 dotenv.config()
@@ -24,6 +25,7 @@ app.use("/category", categoryRouter);
 app.use("/food", foodRouter);
 app.use("/order", orderRouter);
 app.use("/mail", mailRouter);
+app.use("/forgot-password", passwordRouter)
 
 app.listen(PORT, () => {
     Connect(process.env.MONGODB_URL)
