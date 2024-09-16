@@ -5,10 +5,10 @@ import bodyParser from "body-parser";
 import { Connect } from "./utils/db.js";
 import { userRouter } from "./routes/user.js";
 import { authRouter } from "./routes/auth.js";
-import { sendMail } from "./controller/mail.js";
 import { categoryRouter } from "./routes/category.js";
 import { foodRouter } from "./routes/food.js";
 import { orderRouter } from "./routes/order.js";
+import { mailRouter } from "./routes/mail.js";
 
 const app = express();
 dotenv.config()
@@ -23,8 +23,7 @@ app.use("/auth", authRouter);
 app.use("/category", categoryRouter);
 app.use("/food", foodRouter);
 app.use("/order", orderRouter);
-
-app.get("/mail", sendMail)
+app.use("/mail", mailRouter);
 
 app.listen(PORT, () => {
     Connect(process.env.MONGODB_URL)
