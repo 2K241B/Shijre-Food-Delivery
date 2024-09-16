@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { sendMail } from "../controller/mail.js";
-
+import { sendMail, verifyOTP } from "../controller/mail.js";
 
 const mailRouter = Router();
 
-mailRouter.post("/", sendMail);
+mailRouter.post("/", sendMail)
+    .post("/verifyOTP", verifyOTP);
 
 export { mailRouter }
