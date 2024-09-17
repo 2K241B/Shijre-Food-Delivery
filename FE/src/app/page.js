@@ -1,3 +1,5 @@
+import { CreateFood } from "@/components/create-food";
+
 export default function Home() {
-  return <div></div>;
+  return <div><CreateFood/></div>;
 }
