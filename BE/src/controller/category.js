@@ -25,6 +25,27 @@ export const getCategories = async (req, res) => {
     }
 }
 
+export const getCategoriesWithFoods = async (req, res) => {
+
+    try {
+        const response = await categoryModel.aggregate([
+            {
+              '$lookup': {
+                'from': 'foods', 
+                'localField': '_id', 
+                'foreignField': 'categoryId', 
+                'as': 'foods'
+              }
+            }
+          ])
+        res.send(response);
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
+
 export const getCategoryByID = async (req, res) => {
     const { id } = req.params;
 
