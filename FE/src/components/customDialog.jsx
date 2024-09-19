@@ -60,7 +60,7 @@ const CustomDialogBody = ({
   ...props
 }) => (
   <div
-    className={cn("p-6", className)}
+    className={cn("p-6 text-center", className)}
     {...props} />
 )
 CustomDialogBody.displayName = "CustomDialogBody"
