@@ -20,16 +20,20 @@ export const Category = ({ name }) => {
         <div onClick={clickHandle} className={`flex h-10 py-2 px-4 justify-between items-center self-stretch rounded-lg ${isActive ? "bg-[#18BA51] text-[#fff]" : "border-[1px] border-[#D6D8DB] bg-[#fff]"}`}>
             <p className={`text-lg font-medium ${isActive ? "text-[#fff]" : "text-[#000]"}`}>{name}</p>
             <Popover>
-                <PopoverTrigger><EllipsisVertical className="cursor-pointer" /></PopoverTrigger>
+                <PopoverTrigger>
+                    <EllipsisVertical className="cursor-pointer" />
+                </PopoverTrigger>
                 <PopoverContent>
                     <CustomDialog>
-                        <CustomDialogTrigger><CategoryDropDown name="Edit name" themeColor="#161616" icon={<Pencil />} /></CustomDialogTrigger>
+                        <CustomDialogTrigger>
+                            <CategoryDropDown name="Edit name" themeColor="#161616" icon={<Pencil />} />
+                        </CustomDialogTrigger>
                         <CustomDialogContent>
                             <CustomDialogHeader className="border-b-[1px] flex">
                                 <CustomDialogTitle>Edit Name</CustomDialogTitle>
                             </CustomDialogHeader>
                             <CustomDialogBody>
-                                <CustomInput />
+                                <CustomInput placeholder="Update your name here..."/>
                             </CustomDialogBody>
                             <CustomDialogFooter className="justify-center">
                                 <CustomButton type="submit" variant="dark">Submit</CustomButton>
@@ -38,13 +42,19 @@ export const Category = ({ name }) => {
                     </CustomDialog>
 
                     <CustomDialog>
-                        <CustomDialogTrigger><CategoryDropDown name="Delete category" themeColor="#DF1F29" icon={<Trash2 color="#DF1F29" />} /></CustomDialogTrigger>
+                        <CustomDialogTrigger>
+                            <CategoryDropDown name="Delete category" themeColor="#DF1F29" icon={<Trash2 color="#DF1F29" />} />
+                        </CustomDialogTrigger>
                         <CustomDialogContent>
                             <CustomDialogHeader className="border-b-[1px] flex">
-                                <CustomDialogTitle>Are you sure ?</CustomDialogTitle>
+                                <CustomDialogTitle>Delete Category</CustomDialogTitle>
                             </CustomDialogHeader>
-                            <CustomDialogFooter className="justify-center">
-                                <CustomButton type="submit" variant="dark">Submit</CustomButton>
+                            <CustomDialogBody>
+                                <Label className="text-lg">Are you sure you want to delete this category ?</Label>
+                            </CustomDialogBody>
+                            <CustomDialogFooter className="justify-center gap-3">
+                                <CustomButton type="submit" variant="outline" size="flex">No</CustomButton>
+                                <CustomButton type="submit" variant="dark" size="flex">Yes</CustomButton>
                             </CustomDialogFooter>
                         </CustomDialogContent>
                     </CustomDialog>
