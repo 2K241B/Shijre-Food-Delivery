@@ -1,31 +1,55 @@
 "use client"
 import { EllipsisVertical, Pencil, Trash2 } from "lucide-react"
-import { Label } from "./ui/label"
 import { useState } from "react"
-
-const CategoryDropDown = ({name, themeColor, icon }) => {
-    return  <div className="flex py-2 px-4 items-center gap-4 self-stretch">
-    {icon}
-    <Label className={`text-[${themeColor}]`}>{name}</Label>
-</div>
-}
+import { CategoryDropDown } from "./category-drop-down"
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
+import { CustomInput } from "./customInput"
+import { CustomButton } from "./curstomButton"
+import { CustomDialog, CustomDialogBody, CustomDialogContent, CustomDialogFooter, CustomDialogHeader, CustomDialogTitle, CustomDialogTrigger } from "./customDialog"
+import { Label } from "./ui/label"
 
 export const Category = ({ name }) => {
 
-    const [isClicked, setIsClicked] = useState(false)
+    const [isActive, setIsActive] = useState(false);
 
-    const handleDropDown = () => {
-        setIsClicked(!isClicked)
+    const clickHandle = () => {
+        setIsActive(!isActive);
     }
-    
-    return <div className="flex flex-col justify-end">
-        <div className="flex h-10 py-2 px-4 justify-between items-center self-stretch rounded-lg border-[1px] border-[#D6D8DB] bg-[#fff]">
-            <p className="text-lg font-medium text-[#000]">{name}</p>
-            <EllipsisVertical className="cursor-pointer" onClick={handleDropDown}/>
+
+    return <div className="flex flex-col justify-end self-stretch cursor-pointer gap-2">
+        <div onClick={clickHandle} className={`flex h-10 py-2 px-4 justify-between items-center self-stretch rounded-lg ${isActive ? "bg-[#18BA51] text-[#fff]" : "border-[1px] border-[#D6D8DB] bg-[#fff]"}`}>
+            <p className={`text-lg font-medium ${isActive ? "text-[#fff]" : "text-[#000]"}`}>{name}</p>
+            <Popover>
+                <PopoverTrigger><EllipsisVertical className="cursor-pointer" /></PopoverTrigger>
+                <PopoverContent>
+                    <CustomDialog>
+                        <CustomDialogTrigger><CategoryDropDown name="Edit name" themeColor="#161616" icon={<Pencil />} /></CustomDialogTrigger>
+                        <CustomDialogContent>
+                            <CustomDialogHeader className="border-b-[1px] flex">
+                                <CustomDialogTitle>Edit Name</CustomDialogTitle>
+                            </CustomDialogHeader>
+                            <CustomDialogBody>
+                                <CustomInput />
+                            </CustomDialogBody>
+                            <CustomDialogFooter className="justify-center">
+                                <CustomButton type="submit" variant="dark">Submit</CustomButton>
+                            </CustomDialogFooter>
+                        </CustomDialogContent>
+                    </CustomDialog>
+
+                    <CustomDialog>
+                        <CustomDialogTrigger><CategoryDropDown name="Delete category" themeColor="#DF1F29" icon={<Trash2 color="#DF1F29" />} /></CustomDialogTrigger>
+                        <CustomDialogContent>
+                            <CustomDialogHeader className="border-b-[1px] flex">
+                                <CustomDialogTitle>Are you sure ?</CustomDialogTitle>
+                            </CustomDialogHeader>
+                            <CustomDialogFooter className="justify-center">
+                                <CustomButton type="submit" variant="dark">Submit</CustomButton>
+                            </CustomDialogFooter>
+                        </CustomDialogContent>
+                    </CustomDialog>
+                </PopoverContent>
+            </Popover>
         </div>
-        {isClicked ? <div className="w-[200px] flex-col self-end rounded-sm bg-[#fff] drop-shadow-xl">
-            <CategoryDropDown name="Edit name" themeColor="#161616" icon={<Pencil/>}/>
-            <CategoryDropDown name="Delete category" themeColor="#DF1F29" icon={<Trash2 color="#DF1F29"/>}/>
-        </div> : <></>}
-        </div>
+    </div>
 }

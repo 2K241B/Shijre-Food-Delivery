@@ -1,5 +1,5 @@
-import { Category } from "@/components/category";
+import { Sidebar } from "@/components/sidebar";
 
 export default function Home() {
-  return <Category name="Soup"/>;
+  return <Sidebar/>;
 }
