@@ -24,8 +24,13 @@ export const Sidebar = () => {
             {lists.map((category) => {
                 const isActive = category._id === categoryParam
 
-                return <Link key={category._id} className="self-stretch" href={{ pathname: '/admin', query: { category: category._id } }}>
-                    <Category isActive={isActive} key={category._id} name={category.name} />
+                return <Link key={category._id}
+                    className="self-stretch"
+                    href={{ pathname: '/admin', query: { category: category._id } }}>
+                    <Category isActive={isActive}
+                        key={category._id}
+                        name={category.name}
+                        id={category._id} />
                 </Link>
             })}
             <CreateCategory />
