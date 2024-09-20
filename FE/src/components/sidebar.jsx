@@ -5,6 +5,7 @@ import { Category } from "./category";
 import { CreateCategory } from "./create-category";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { HeaderLabel } from "./header-label";
 
 export const Sidebar = () => {
     const [lists, setLists] = useState([]);
@@ -17,9 +18,7 @@ export const Sidebar = () => {
     const categoryParam = searchParams.get("category")
 
     return <div className="flex w-fit h-screen p-6 flex-col items-start gap-10 shrink-0 bg-[#fff]">
-        <div className="flex items-center self-stretch">
-            <h3 className="text-[22px] font-bold">Food Menu</h3>
-        </div>
+        <HeaderLabel name="Food Menu"/>
         <div className="flex flex-col items-start gap-[26px] w-full">
             {lists.map((category) => {
                 const isActive = category._id === categoryParam
