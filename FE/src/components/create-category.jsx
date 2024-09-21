@@ -3,6 +3,7 @@ import {
   CustomDialog,
   CustomDialogBody,
   CustomDialogContent,
+  CustomDialogDescription,
   CustomDialogFooter,
   CustomDialogHeader,
   CustomDialogTitle,
@@ -13,7 +14,7 @@ import { CustomButton } from "@/components/curstomButton";
 import { PlusIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { axiosInstance } from "@/lib/axios";
-import { Label } from "./ui/label";
+import { CustomLabel } from "./customLabel";
 
 export const CreateCategory = () => {
   const formRef = useRef(null);
@@ -53,13 +54,14 @@ export const CreateCategory = () => {
       <PlusIcon color="#5E6166" />
       Create New Category</CustomDialogTrigger>
     <CustomDialogContent>
-      <CustomDialogHeader className="border-b-[1px] flex">
+      <CustomDialogHeader className="border-b-[1px] flex flex-col items-center">
         <CustomDialogTitle>Create New Category</CustomDialogTitle>
+        <CustomDialogDescription></CustomDialogDescription>
       </CustomDialogHeader>
       <form ref={formRef} onSubmit={handleSubmit}>
         <CustomDialogBody>
-          <CustomInput name="categoryName" placeholder="Placeholder" className="" label="Category Name" />
-        <Label>{output}</Label>
+          <CustomInput id="categoryName" placeholder="Enter here ..." className="" label="Category Name" />
+          <CustomLabel>{output}</CustomLabel>
         </CustomDialogBody>
         <CustomDialogFooter>
           <CustomButton onClick={handleClear} type="button" variant="ghost" size="sm">Clear</CustomButton>

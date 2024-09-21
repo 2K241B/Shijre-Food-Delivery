@@ -5,7 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { CustomInput } from "./customInput"
 import { CustomButton } from "./curstomButton"
 import { CustomDialog, CustomDialogBody, CustomDialogContent, CustomDialogFooter, CustomDialogHeader, CustomDialogTitle, CustomDialogTrigger } from "./customDialog"
-import { Label } from "./ui/label"
+import { CustomLabel } from "./customLabel"
 import { useRef, useState } from "react"
 import { axiosInstance } from "@/lib/axios"
 
@@ -68,7 +68,7 @@ export const Category = ({ name, isActive, id }) => {
                             <CustomDialogTitle>Delete Category</CustomDialogTitle>
                         </CustomDialogHeader>
                         <CustomDialogBody>
-                            <Label className="text-lg">Are you sure you want to delete this category ?</Label>
+                            <CustomLabel className="text-lg">Are you sure you want to delete this category ?</CustomLabel>
                         </CustomDialogBody>
                         <CustomDialogFooter className="justify-center gap-3">
                             <CustomButton type="submit" variant="outline" size="flex" onClick={handleCancel}>No</CustomButton>
