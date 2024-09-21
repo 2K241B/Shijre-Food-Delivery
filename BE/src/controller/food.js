@@ -13,6 +13,18 @@ export const createFood = async (req, res) => {
     }
 }
 
+export const getAllFoods = async (req, res) => {
+
+    try {
+        const response = await foodModel.find().populate("categoryId")
+        res.send(response);
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send(error.message);
+    }
+}
+
 export const getFoods = async (req, res) => {
 
     try {
