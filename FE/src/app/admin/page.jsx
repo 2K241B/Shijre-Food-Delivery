@@ -30,7 +30,8 @@ const AdminPage = () => {
         <CategoriesWithFoodsContext.Provider value={{ response }}>
             <div className="p-6 w-full flex flex-col gap-8">
                 <div className="flex justify-between w-full p-4">
-                    <HeaderLabel name={name} />
+                    <HeaderLabel 
+                    name={name} />
                     <CreateFood />
                 </div>
 
