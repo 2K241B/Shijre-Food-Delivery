@@ -83,6 +83,14 @@ const CustomDialogTitle = React.forwardRef(({ className, ...props }, ref) => (
 ))
 CustomDialogTitle.displayName = CustomDialogPrimitive.Title.displayName
 
+const CustomDialogDescription = React.forwardRef(({ className, ...props }, ref) => (
+  <CustomDialogPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props} />
+))
+CustomDialogDescription.displayName = CustomDialogPrimitive.Description.displayName
+
 export {
   CustomDialog,
   CustomDialogPortal,
@@ -94,4 +102,5 @@ export {
   CustomDialogBody,
   CustomDialogFooter,
   CustomDialogTitle,
+  CustomDialogDescription
 }
