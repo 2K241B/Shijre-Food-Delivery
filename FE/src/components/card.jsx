@@ -2,11 +2,19 @@
 import Image from "next/image"
 import { Discount } from "./discount"
 
-export const Card = ({ imageSrc, mainPrice, discountPercent, foodName }) => {
-    return <div className="inline-flex flex-col items-start gap-[14px]">
-        <div className="relative justify-center items-center flex w-[282px] h-[186px]">
-            <Image src={imageSrc} fill="true" className="rounded-2xl -z-10" />
-            <Discount percent={discountPercent} />
+export const Card = ({ imageSrc, mainPrice, discountPercent, foodName, alt }) => {
+    return <div className="inline-flex flex-col items-start gap-[14px] justify-self-center w-full">
+        <div className="relative justify-center items-center flex w-full h-[186px]">
+            <Image
+                src={imageSrc}
+                fill={true}
+                sizes="(max-width: 282px)"
+                className="rounded-2xl z-10 shadow-md object-cover object-center"
+                alt={alt}
+                priority={true}
+            />
+
+            {discountPercent >= 0 ? <Discount percent={discountPercent} /> : <></>}
         </div>
 
         <div className="flex w-[282px] flex-col items-start gap-[2px]">

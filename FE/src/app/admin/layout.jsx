@@ -2,7 +2,7 @@ import { Sidebar } from "@/components/sidebar";
 
 const AdminLayout = ({ children }) => {
     return (
-        <section className="flex gap-6 ml-[calc((100vw-1258px)/2)] bg-gray-100">
+        <section className="flex gap-6 max-w-[1258px] bg-gray-100 m-auto">
             <Sidebar/>
             {children}
         </section>
