@@ -6,7 +6,7 @@ const OTPSchema = new Schema({
         required: [true, "Name is required"]
     },
     oneTimePass: {
-        type: Number,
+        type: String,
         required: [true, "One Time Password is required"],
     },
     createdAt: {
