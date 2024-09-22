@@ -8,8 +8,7 @@ import { authRouter } from "./routes/auth.js";
 import { categoryRouter } from "./routes/category.js";
 import { foodRouter } from "./routes/food.js";
 import { orderRouter } from "./routes/order.js";
-import { mailRouter } from "./routes/mail.js";
-import { passwordRouter } from "./routes/password.js";
+import { recoveryRouter } from "./routes/recovery.js";
 
 const app = express();
 dotenv.config()
@@ -24,8 +23,7 @@ app.use("/auth", authRouter);
 app.use("/category", categoryRouter);
 app.use("/food", foodRouter);
 app.use("/order", orderRouter);
-app.use("/mail", mailRouter);
-app.use("/forgot-password", passwordRouter)
+app.use("/recovery", recoveryRouter);
 
 app.listen(PORT, () => {
     Connect(process.env.MONGODB_URL)
