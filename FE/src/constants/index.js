@@ -1,5 +1,20 @@
 import { FacebookIcon, InstagramIcon, TwitterXIcon } from "@/components/icons";
 
+export const NAVBAR_MENU_ITEMS = [
+    {
+        name: "НҮҮР",
+        href: "/"
+    },
+    {
+        name: "ХООЛНЫ ЦЭС",
+        href: "/category"
+    },
+    {
+        name: "ХҮРГЭЛТИЙН БҮС",
+        href: "/delivery-zone"
+    },
+]
+
 export const FOOTER_NAV_MENU_ITEMS = [
     {
         name: "Нүүр",
