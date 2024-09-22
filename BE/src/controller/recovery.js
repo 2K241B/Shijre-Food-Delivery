@@ -19,13 +19,16 @@ const transporter = nodemailer.createTransport({
 export const sendMail = async (req, res) => {
     const { email } = req.body;
     try {
-        const user = userModel.findOne({ email });
+        const user = await userModel.findOne({ email });
 
         if (!user) return res.status(404).json("User not found");
 
         const generatedOTP = Math.floor(Math.random() * 9000 + 1000);
 
-        await otpModel.create({ email, oneTimePass: generatedOTP });
+        await otpModel.create({
+            email,
+            oneTimePass: generatedOTP
+        });
 
         const mailOptions = {
             from: '"Food Delivery Project" <st21aye@gmail.com>',
@@ -37,32 +40,40 @@ export const sendMail = async (req, res) => {
         const Info = await transporter.sendMail(mailOptions);
 
         if (Info.messageId) {
-            res.status(200).send({ success: true, message: Info })
+            return res.status(200).send({ success: true, message: "OTP sent successfully.", email: user.email });
         } else {
-            res.status(404).send({ error: "Message didn't send" })
+            return res.status(500).send({ success: false, error: "Message didn't send." });
         }
     } catch (error) {
-        res.status(404).send({ error: error })
-        console.error(error);
+        console.error('Error sending mail:', error);
+        return res.status(500).send({ success: false, error: 'Internal server error.' });
     }
 }
 
 export const verifyOTP = async (req, res) => {
-    const { email, otp } = req.body;
+    const { email, oneTimePass } = req.body;
 
     try {
         const response = await otpModel.findOne({ email });
 
         if (!response) return res.status(410).json("OTP expired or not found");
 
-        if (response.oneTimePass == otp) {
+        if (response.oneTimePass === oneTimePass) {
             const token = await accessTokenModel.create({ email, accessToken: nanoid() });
-
-            res.status(200).send({ success: true, accessToken: token.accessToken });
+            return res.status(200).
+                send({
+                    success: true,
+                    email: token.email,
+                    accessTokens: token.accessToken,
+                    message: "OTP verified successfully."
+                });
         }
+
     } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
+        console.error('Error verifying OTP:', error);
+        return res.status(500).json({
+            error: "An internal server error occurred."
+        });
     }
 }
 
