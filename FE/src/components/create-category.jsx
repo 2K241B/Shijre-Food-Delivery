@@ -60,7 +60,7 @@ export const CreateCategory = () => {
       </CustomDialogHeader>
       <form ref={formRef} onSubmit={handleSubmit}>
         <CustomDialogBody>
-          <CustomInput id="categoryName" placeholder="Enter here ..." className="" label="Category Name" />
+          <CustomInput id="categoryId" name="categoryName" placeholder="Enter here ..." className="" label="Category Name" />
           <CustomLabel>{output}</CustomLabel>
         </CustomDialogBody>
         <CustomDialogFooter>
