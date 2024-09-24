@@ -8,18 +8,15 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "./ui/label";
 
 
-const CustomInput = React.forwardRef(({ className, id, type, label, placeholder, showIcon = false, showSwitch = false, onchange, ...props }, ref) => {
+const CustomInput = React.forwardRef(({ className, id, name, type, label, placeholder, showIcon = false, showSwitch = false, onchange, ...props }, ref) => {
 
     const [clicked, setClicked] = React.useState(true)
-
-    const onclickHandler = () => {
-        setClicked(!clicked)
-    }
-
+    const [isDiscount, setIsDiscount] = React.useState(true)
+    
     return (
         (<div className="flex flex-col items-start gap-1 self-stretch">
             <div className="flex gap-2 items-center">
-                {showSwitch ? <Switch /> : <></>}
+                {showSwitch ? <Switch onClick={() => setIsDiscount(!isDiscount)} /> : <></>}
                 <Label htmlFor={id} className="text-sm text-[#3F4145]">{label}</Label>
             </div>
             <span className={cn(
@@ -28,13 +25,15 @@ const CustomInput = React.forwardRef(({ className, id, type, label, placeholder,
             )}>
                 <input
                     id={id}
+                    name={name}
                     onChange={onchange}
                     placeholder={placeholder}
+                    disabled={name === "foodDiscount" ? isDiscount : false}
                     type={showIcon & clicked ? "password" : "text"}
                     className="w-full h-full bg-transparent outline-none appearance-none"
                     ref={ref}
                     {...props} />
-                {showIcon ? <span onClick={onclickHandler}>{clicked ? <EyeOffIcon /> : <EyeIcon />}</span> : <></>}
+                {showIcon ? <span onClick={() => setClicked(!clicked)}>{clicked ? <EyeOffIcon /> : <EyeIcon />}</span> : <></>}
             </span>
         </div>
         )
