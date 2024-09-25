@@ -22,12 +22,13 @@ export const Category = ({ name, isActive, id }) => {
         await axiosInstance.put(`/category/${id}`, {
             name: inputRef.current.value
         });
-
+        alert("Edited category successfully")
         onOpenChange();
     };
 
     const handleDelete = async () => {
         await axiosInstance.delete(`/category/${id}`);
+        alert("Deleted category successfully")
         onOpenChange();
     };
 
@@ -59,7 +60,7 @@ export const Category = ({ name, isActive, id }) => {
                     </CustomDialogContent>
                 </CustomDialog>
 
-                <CustomDialog onOpenChange={onOpenChange} open={open}>
+                <CustomDialog>
                     <CustomDialogTrigger>
                         <CategoryDropDown name="Delete category" themeColor="#DF1F29" icon={<Trash2 color="#DF1F29" />} />
                     </CustomDialogTrigger>

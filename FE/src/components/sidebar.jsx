@@ -12,7 +12,7 @@ export const Sidebar = () => {
 
     useEffect(() => {
         axiosInstance.get("/category/foods").then((res) => setLists(res.data));
-    }, [])
+    }, [lists])
 
     const searchParams = useSearchParams();
     const categoryParam = searchParams.get("category")
