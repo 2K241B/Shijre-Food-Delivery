@@ -14,11 +14,17 @@ export const Main = () => {
             <CldImage src="https://res.cloudinary.com/dawbgkucp/image/upload/v1727340799/main-food-1_kpqpuh.png"
                 width={443}
                 height={438}
-                className="shrink-0 absolute left-0 top-0 z-20" />
+                className="shrink-0 absolute left-0 top-0 z-20"
+                priority={true}
+                alt="main-food-image"
+            />
             <CldImage src="https://res.cloudinary.com/dawbgkucp/image/upload/v1727340773/main-food-2_tpz9qa.png"
                 width={313}
                 height={313}
-                className="shrink-0 absolute bottom-0 right-0 z-30" />
+                className="shrink-0 absolute bottom-0 right-0 z-30"
+                priority={true}
+                alt="main-food-image"
+            />
         </div>
         <div className="absolute top-0 left-0">
             <MainBackground />
