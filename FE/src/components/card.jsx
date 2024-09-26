@@ -3,7 +3,7 @@ import { Discount } from "./discount"
 import { CldImage } from "next-cloudinary"
 
 export const Card = ({ imageSrc, mainPrice, discountPercent, foodName, alt }) => {
-    return <div className="inline-flex flex-col items-start gap-[14px] justify-self-center w-full">
+    return <div className="inline-flex flex-col items-start gap-[14px] justify-self-center w-full max-w-[282px]">
         <div className="relative justify-center items-center flex w-full h-[186px]">
             <CldImage
                 sizes="(max-width: 282px)"
@@ -11,6 +11,7 @@ export const Card = ({ imageSrc, mainPrice, discountPercent, foodName, alt }) =>
                 fill={true}
                 alt={alt}
                 className="rounded-2xl z-10 shadow-md object-cover object-center"
+                priority={true}
             />
             {discountPercent >= 0 ? <Discount percent={discountPercent} /> : <></>}
         </div>
